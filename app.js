@@ -21,10 +21,12 @@ mongoose
   .catch(err => {
     console.error('Error connecting to mongo', err)
   });
-//evitar las advertencias
+//evitar las advertencias/*
+/*
 mongoose.set('useNewUrlParser',true)
 mongoose.set('useFindAndModify',false)
 mongoose.set('useCreateIndex',true) 
+*/
 //
 
 const app_name = require('./package.json').name;
