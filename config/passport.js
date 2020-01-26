@@ -16,7 +16,7 @@ passport.deserializeUser(async (id, done) => {
 passport.use(
   new GoogleStrategy(
     {
-      callbackURL: '/google/redirect',
+      callbackURL: 'https://login-social.herokuapp.com/google/redirect',
       clientID: process.env.G_CLIENT_ID,
       clientSecret: process.env.G_CLIENT_SECRET,
       profileFields: ['id', 'displayName', 'name', 'email']

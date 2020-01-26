@@ -23,7 +23,7 @@ router.get('/upload', (req, res, next) => {
 })
 
 
-router.get('/google/redirect', passport.authenticate('google', { Scope: ['user', 'email'] }), (req, res, next) => {
+router.get('https://login-social.herokuapp.com/google/redirect', passport.authenticate('google', { Scope: ['user', 'email'] }), (req, res, next) => {
   console.log(req.user + "////////////////////////////////////////////////////////////////////////////////////////////////")
   res.render('profile', req.user)
 })
