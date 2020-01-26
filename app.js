@@ -14,7 +14,7 @@ const passport = require('passport')
 //process.env.MONGO_SRV
 //mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PWD}@cluster0-uc9aw.mongodb.net/test?retryWrites=true&w=majority
 mongoose
-  .connect('mongodb://localhost/loginp2', {useNewUrlParser: true, useUnifiedTopology:true})
+  .connect(process.env.MONGO_SRV, {useNewUrlParser: true, useUnifiedTopology:true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
