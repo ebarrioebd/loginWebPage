@@ -16,7 +16,7 @@ router.get('/facebook', passport.authenticate('facebook', {
 }))
 // mail send config
 router.get('/sendmail', async (req, res, next) => {
-  /*const port = req.app.settings.port || process.env.PORT
+  const port = req.app.settings.port || process.env.PORT
   const host = req.protocol + '://' +req.hostname+ (port ==80 || port == 443 ? '' :  port )
   const name = 'Dummy'
   const lastName = 'Doe'
@@ -34,7 +34,7 @@ router.get('/sendmail', async (req, res, next) => {
     subject : 'correo de prueba',
     text : 'que hda',
     html 
-  })*/
+  })
   console.log(req.name+"/////////////////////////////////////////////////")
  res.render('/email_success')
 })
