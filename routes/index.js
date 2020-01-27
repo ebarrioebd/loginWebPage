@@ -23,10 +23,10 @@ router.get('/upload', (req, res, next) => {
 })
 
 
-router.get('https://login-social-edwin.herokuapp.com/google/redirect', passport.authenticate('google', { scope: 'email' }), (req, res, next) => {
+router.get('/google/redirect', passport.authenticate('google', { scope: 'email' }), (req, res, next) => {
   console.log(`g user >>> ${req.user}`)
   res.render('profile', req.user)
-})  
+}) 
 router.get('/facebook/redirect', passport.authenticate('facebook', { scope: 'email' }, (req, res, next) => {
   console.log(`fb user >>> ${req.user}`)
   res.render('profile', req.user)
