@@ -11,11 +11,11 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser(async (id, done) => {
   const user = await User.findById(id)
   done(null, user)
-})
-
+}) 
 passport.use(
   new GoogleStrategy(
     {
+      //https://login-social-edwin.herokuapp.com/google/redirect
       callbackURL: 'https://login-social-edwin.herokuapp.com/google/redirect',
       clientID: process.env.G_CLIENT_ID,
       clientSecret: process.env.G_CLIENT_SECRET,
@@ -31,8 +31,19 @@ passport.use(
         const newUser = await new User({
           email: profile._json.email,
           googleId: profile.id,
-          name: profile._json.first_name,
-          lastName:profile._json.last_name
+          name:profile._json.name,
+          lastName:profile._json.family_name,
+          picture: profile._json.picture
+          /*
+sub": "118326418743011343112",
+  "name": "Edwin Diaz",
+  "given_name": "Edwin",
+  "family_name": "Diaz",
+  "picture": "https://lh5.googleusercontent.com/-71W2kVljxa8/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rdTUqJojBt0pOX_3EWDVDCUdl5bsQ/photo.jpg",
+  "email": "edwinhunter103@gmail.com",
+  "email_verified": true,
+  "locale": "es-419"
+          */
         }).save()
         done(null, newUser)
       }

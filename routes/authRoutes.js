@@ -3,12 +3,19 @@ const passport = require('../config/passport')
 const nodemailer = require('nodemailer')
 // Router prefix : /auth
 
-router.get('/google', passport.authenticate('google', {
-  scope: [
-    'profile',
-    'email'
-  ]
-}))
+router.get('/login',(req, res, next) => {
+  // Guarde la URL de la página actual del usuario para que la aplicación pueda redirigir de nuevamente
+  // después de la autorización
+  if (req.query.return) {
+    req.session.oauth2return = req.query.return;
+  }
+  next();
+}, 
+passport.authenticate('google', { scope: [ 'profile','email' ]})
+) 
+ 
+
+
 router.get('/facebook', passport.authenticate('facebook', {
   scope: [
     'public_profile'

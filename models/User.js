@@ -17,7 +17,8 @@ const userSchema = new Schema(
       sparse: true 
     },
     name: String,
-    lastName:String
+    lastName:String,
+    picture : String
   }, 
   {
     timestamps: true,

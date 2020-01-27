@@ -44,7 +44,7 @@ app.use(cookieParser());
 app.use(session({
 	secret:process.env.SESSION_SECRET ,
 	cookie: {
-		maxAge: 100 * 60 * 24 
+		maxAge: 1000*60*60*24  //24 horas
 		},
 	resave:true,
   saveUninitialized :  true
@@ -83,4 +83,7 @@ app.use('/', index);
 const authRoutes = require('./routes/authRoutes')
 app.use('/auth', authRoutes)
 
+// 
+
+//
 module.exports = app;
