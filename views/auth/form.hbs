@@ -1,0 +1,28 @@
+<h2>{{title}}</h2>
+<h2>Action :: {{action}}</h2><br> 
+
+<form action="{{action}}"  method='POST'>
+  <div>
+  <label for='email' >Email
+    <input type="text" name='email'>
+  </label>
+</div>
+{{#if register}}
+<div>
+  <label for='name' >name 
+    <input type="text" name='name'>
+  </label>
+</div>
+<div>
+  <label for='lastName' >lastName 
+    <input type="text" name='lastName'>
+  </label>
+</div>
+{{/if}}
+<div>
+  <label for='password' >Password 
+    <input type="password" name='password'>
+  </label>
+</div>
+  <input type="submit" value="{{buttonText}}" >
+</form>

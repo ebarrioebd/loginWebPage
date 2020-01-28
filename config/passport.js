@@ -33,17 +33,7 @@ passport.use(
           googleId: profile.id,
           name:profile._json.name,
           lastName:profile._json.family_name,
-          picture: profile._json.picture
-          /*
-sub": "118326418743011343112",
-  "name": "Edwin Diaz",
-  "given_name": "Edwin",
-  "family_name": "Diaz",
-  "picture": "https://lh5.googleusercontent.com/-71W2kVljxa8/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rdTUqJojBt0pOX_3EWDVDCUdl5bsQ/photo.jpg",
-  "email": "edwinhunter103@gmail.com",
-  "email_verified": true,
-  "locale": "es-419"
-          */
+          picture: profile._json.picture 
         }).save()
         done(null, newUser)
       }
@@ -55,6 +45,7 @@ sub": "118326418743011343112",
 passport.use(
   new FacebookStrategy(
     {
+      //https://login-social-edwin.herokuapp.com/facebook/redirect
       callbackURL: 'https://login-social-edwin.herokuapp.com/facebook/redirect',
       clientID: process.env.FB_CLIENT_ID,
       clientSecret: process.env.FB_CLIENT_SECRET,
@@ -62,7 +53,8 @@ passport.use(
 
     },
     async (accessToken, refreshToken, profile, done) => {
-      console.log(`this is profile Facebook  >>> ${profile}`)
+      console.log(`This is the  google Facebook >>> ${(profile._json.name)}, Email: ${profile._json.email} , Profile: ${profile._raw}`)
+      //req.session.googleSessionEdwin = profile._raw;
       const currentUser = await User.findOne({googleId: profile.id})
       if(currentUser){
         done(null,currentUser)
@@ -72,7 +64,8 @@ passport.use(
           email: profile._json.email,
           googleId: profile.id,
           name: profile._json.first_name,
-          lastName:profile._json.last_name
+          lastName:profile._json.last_name,
+          picture: profile._json.displayName
         }).save()
         done(null, newUser)
       }

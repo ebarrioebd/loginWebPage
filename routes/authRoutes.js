@@ -1,9 +1,10 @@
 const router = require('express').Router()
 const passport = require('../config/passport')
-const nodemailer = require('nodemailer')
+const nodemailer = require('nodemailer') 
+const User = require('../models/User')
 // Router prefix : /auth
 
-router.get('/login',(req, res, next) => {
+router.get('/googleLog',(req, res, next) => {
   // Guarde la URL de la página actual del usuario para que la aplicación pueda redirigir de nuevamente
   // después de la autorización
   if (req.query.return) {
@@ -45,6 +46,35 @@ router.get('/sendmail', async (req, res, next) => {
   console.log(req.name+"/////////////////////////////////////////////////")
  res.render('/email_success')
 })
+
+////logib mngo
+router.get('/registrar', async (req, res, next) => {
+  console.log("registrar \n.")
+  const config = {
+    title: 'Sign up!',
+    action: '/signup',
+    buttonText: 'registrar ',
+    register: true
+  }
+  res.render('auth/form', config)
+}) 
+router.get('/entrar', async (req, res, next) => {
+  console.log("registrar \n.")
+  const config = {
+    title: 'Login !',
+    action: '/login',
+    buttonText: 'Login',
+    register: false
+  }
+  res.render('auth/form', config)
+}) 
+
+router.get('/req', async (req, res, next) => {
+   console.log(req)
+})
+
+
+
 module.exports = router
 /*
 *-login
@@ -60,3 +90,4 @@ module.exports = router
   *user w/upload permission+
   *user w/view permission
 */
+

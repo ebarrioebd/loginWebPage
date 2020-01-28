@@ -16,9 +16,15 @@ const userSchema = new Schema(
       unique : true,
       sparse: true 
     },
+    password:String,
     name: String,
     lastName:String,
-    picture : String
+    picture : String,
+    role:{
+      type:String,
+      enum: ['GUEST','EDITOR','ADMIN'],
+      default:'GUEST'
+  }
   }, 
   {
     timestamps: true,
