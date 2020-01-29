@@ -21,9 +21,18 @@
 
 <body>
 <h1> Fotos</h1>
-<a href="/profile"><button type="button" class="btn btn-success">Inicio</button></a><br>
+<a href="/profile"><button type="button" class="btn btn-success">Perfil</button></a><br><br>
  {{#each this}}
-        <img  src="{{photos}}" height="200" alt=""><br>
+ {{#if photos}}
+ <div class="card" style="width: 18rem;">
+   <img  class="card-img-top"  src="{{photos}}"  alt=""><br> 
+  <div class="card-body">
+    <h5 class="card-title">{{caption}}</h5>
+    <p class="card-text"></p>
+    <a href="#" class="btn btn-primary">Eliminar</a>
+  </div>
+</div>
+  {{/if}}
   {{/each}} 
 </div>
 </body>

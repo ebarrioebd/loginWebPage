@@ -30,7 +30,7 @@ router.post('/upload', uploadCloud.single('photo'), async (req, res, next) => {/
   const { url, originalname } = req.file
   console.log(">>>>>", url)
   const { caption } = req.body
-  const newPic = await Pic.create({ caption, photos: { url, name: originalname } })
+  // const newPic = await Pic.create({ caption, photos: { url, name: originalname } })
   const myquery = { email: req.session.googleSessionEdwin.email };
   const newvalues = { $set: { picture: url } };
   const userUpdatePic = await User.updateOne(myquery, newvalues, (err) => {
@@ -215,20 +215,28 @@ router.post('/s', async (req, res, next) => {//subir imagen
 
 const PicUser = require('../models/PicUser')
 router.post('/subirImg', uploadCloudMedia.single('photo'), async (req, res, next) => {//subir imagen
-  const { url, originalname } = req.file
-  console.log(">>>>>", url)
-  const { caption } = req.body
-  const newPic = await PicUser.create({ caption, photos:url, name: originalname , email: req.session.googleSessionEdwin.email }) 
-  res.render('uploaded-pic', newPic)
+  if (req.session.googleSessionEdwin) {
+    const { url, originalname } = req.file
+    console.log(">>>>>", url)
+    const { caption } = req.body
+    const newPic = await PicUser.create({ caption, photos: url, name: originalname, email: req.session.googleSessionEdwin.email })
+    res.render('uploaded-pic', newPic)
+  } else {
+    res.redirect("/");
+  }
 }
 )
 router.get('/showphotos', async (req, res, next) => {//subir imagen 
-  try { 
-    const rs = await PicUser.find({ email:req.session.googleSessionEdwin.email }) 
-    var json1=rs[0]
-    console.log(json1);
-    res.render("fotosUser",rs)
-  } catch (err){
+  try {
+    if (req.session.googleSessionEdwin) {
+      const rs = await PicUser.find({ email: req.session.googleSessionEdwin.email })
+      var json1 = rs[0]
+      console.log(rs);
+      res.render("fotosUser", rs)
+    } else {
+      res.redirect("/");
+    }
+  } catch (err) {
     console.log(err)
   }
 })
