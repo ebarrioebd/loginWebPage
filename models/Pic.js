@@ -1,6 +1,7 @@
 const {Schema,model}= require('mongoose')
 const picSchema = new Schema(
   {
+    email:String,
    caption: String,
     photos:
      { 

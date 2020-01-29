@@ -10,7 +10,6 @@ const logger       = require('morgan');
 const path         = require('path');
 const session = require('express-session') 
 const passport = require('passport') 
-
 //process.env.MONGO_SRV
 //mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PWD}@cluster0-uc9aw.mongodb.net/test?retryWrites=true&w=majority
 mongoose
@@ -70,6 +69,7 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
+hbs.registerPartials(`${__dirname}/views/partials`)
 
 
 // default value for title local

@@ -19,7 +19,14 @@ const userSchema = new Schema(
     password:String,
     name: String,
     lastName:String,
-    picture : String,
+    picture : {
+      type:String,
+      default:"https://res.cloudinary.com/dzyssenr4/image/upload/v1580245880/img/logIcono_prorlk.png"
+      },
+      media:{
+       type: Object,
+       default:[{"name":"https://res.cloudinary.com/dzyssenr4/image/upload/v1580261265/filesUser/x2slejdcsibzkxrtkrsf.jpg"}]
+      },
     role:{
       type:String,
       enum: ['GUEST','EDITOR','ADMIN'],

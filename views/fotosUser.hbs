@@ -20,12 +20,11 @@
 </head>
 
 <body>
-<h2> Actualizar tu foto de perfil</h2>
-<h5> format must be jpg or png</h5>
-<form action='/upload' method="POST" enctype="multipart/form-data">
-<p>Add photo:</p>
-<input type="file" name="photo" > 
-<input type="submit" value="upload">
-</form>
+<h1> Fotos</h1>
+<a href="/profile"><button type="button" class="btn btn-success">Inicio</button></a><br>
+ {{#each this}}
+        <img  src="{{photos}}" height="200" alt=""><br>
+  {{/each}} 
+</div>
 </body>
 </html>
