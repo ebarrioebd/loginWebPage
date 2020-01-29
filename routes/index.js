@@ -240,4 +240,10 @@ router.get('/showphotos', async (req, res, next) => {//subir imagen
     console.log(err)
   }
 })
+//borrar foto
+router.get('/borrar', async (req, res, next) => {//subir imagen 
+console.log(req.query.id+",...........................................") 
+const rs = await PicUser.remove({ _id: req.query.id })
+res.render('profile',req.session.googleSessionEdwin)
+})
 module.exports = router;
